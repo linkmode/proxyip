@@ -38,7 +38,7 @@ echo "CloudflareST 运行完成，结果已保存到 $output_file。"
 
 # 提取 IP 地址并保存到 result_upload.txt
 echo "正在提取 IP 地址..."
-awk -F ',' 'NR > 1 {print $1 "#" "Best" NR-1}' "$output_file" > "$upload_file"
+awk -F ',' 'NR > 1 {print $1 "#" "Best " NR-1}' "$output_file" > "$upload_file"
 
 # 检查是否成功生成 result_upload.txt
 if [ -f "$upload_file" ]; then
