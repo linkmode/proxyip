@@ -20,8 +20,8 @@ if [ ! -d "$github_repo_path" ]; then
 fi
 
 # 运行 CloudflareST 工具
-echo "正在运行 CloudflareST..."
-"$cloudflarest_path" -sl 5 -tll 40 -tl 200 -o "$output_file"
+#echo "正在运行 CloudflareST..."
+#"$cloudflarest_path" -sl 5 -tll 40 -tl 200 -o "$output_file"
 
 # 检查是否成功生成 result.txt
 if [ ! -f "$output_file" ]; then
@@ -32,7 +32,7 @@ echo "CloudflareST 运行完成，结果已保存到 $output_file。"
 
 # 提取 IP 地址并保存到 result_upload.txt
 echo "正在提取 IP 地址..."
-awk -F ',' 'NR > 1 {print $1}' "$output_file" > "$upload_file"
+awk -F ',' 'NR > 1 {print $1 "#" "best" NR-1}' "$output_file" > "$upload_file"
 
 # 检查是否成功生成 result_upload.txt
 if [ -f "$upload_file" ]; then
@@ -41,7 +41,6 @@ else
   echo "IP 地址提取失败，未生成 $upload_file。"
   exit 1
 fi
-
 
 # 提交文件到 GitHub
 echo "正在提交文件到 GitHub..."
