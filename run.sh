@@ -21,7 +21,7 @@ fi
 
 # 运行 CloudflareST 工具
 echo "正在运行 CloudflareST..."
-"$cloudflarest_path" -sl 5 -o "$output_file"
+"$cloudflarest_path" -sl 5  -tll 40 -tl 200 -o "$output_file"
 
 # 检查是否成功生成 result.txt
 if [ ! -f "$output_file" ]; then
