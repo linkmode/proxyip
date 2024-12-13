@@ -23,6 +23,9 @@ log() {
 # 初始化日志文件
 log "脚本执行开始..."
 
+# 关闭openclash
+/etc/init.d/openclash stop
+
 # 定义路径和文件名
 cloudflarest_path="./CloudflareST"
 output_file="./result.txt"
@@ -50,6 +53,7 @@ log "GitHub 项目路径已找到：$github_repo_path"
 echo "正在运行 CloudflareST..."
 log "正在运行 CloudflareST..."
 "$cloudflarest_path" -o "$output_file" -sl 5 -dn 10 -tll 40 -tl 230 -tlr 0.2
+#"$cloudflarest_path" -o "$output_file" -dn 10 -tll 40 -tl 230 -tlr 0.2
 
 # 检查是否成功生成 result.txt
 if [ ! -f "$output_file" ]; then
@@ -89,5 +93,11 @@ else
   log "上传到 GitHub 失败，请检查是否正确配置了远程仓库。"
   echo "上传到 GitHub 失败，请检查是否正确配置了远程仓库。"
 fi
+
+#重启openclash
+/etc/init.d/openclash restart
+
+#更新openclash订阅
+/usr/share/openclash/openclash.sh
 
 log "脚本执行结束。"
