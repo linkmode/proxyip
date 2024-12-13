@@ -4,7 +4,10 @@
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 
 # 定义日志文件
-LOG_FILE="./run.log"
+LOG_FILE="$SCRIPT_DIR/run.log"
+
+# 确保进入脚本所在的目录
+cd "$SCRIPT_DIR" || { echo "无法进入脚本所在目录"; exit 1; }
 
 # 清空日志文件
 > "$LOG_FILE"
@@ -19,10 +22,6 @@ log() {
 
 # 初始化日志文件
 log "脚本执行开始..."
-
-# 确保进入脚本所在的目录
-cd "$SCRIPT_DIR" || { log "无法进入脚本所在目录"; exit 1; }
-log "已进入脚本所在目录：$SCRIPT_DIR"
 
 # 定义路径和文件名
 cloudflarest_path="./CloudflareST"
@@ -76,4 +75,19 @@ else
 fi
 
 # 提交文件到 GitHub
-echo "正在提交文件
+echo "正在提交文件到 GitHub..."
+log "正在提交文件到 GitHub..."
+git add result_upload.txt
+git commit -m "$commit_message"
+git push origin main # 确保远程分支名称为 'main'，如果是 'master'，请替换为 'master'
+
+# 检查提交状态
+if [ $? -eq 0 ]; then
+  log "文件已成功上传到 GitHub！"
+  echo "文件已成功上传到 GitHub！"
+else
+  log "上传到 GitHub 失败，请检查是否正确配置了远程仓库。"
+  echo "上传到 GitHub 失败，请检查是否正确配置了远程仓库。"
+fi
+
+log "脚本执行结束。"
