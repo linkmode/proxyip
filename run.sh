@@ -94,10 +94,12 @@ else
   echo "上传到 GitHub 失败，请检查是否正确配置了远程仓库。"
 fi
 
+#更新openclash订阅
+/usr/share/openclash/openclash.sh
+
 #重启openclash
 /etc/init.d/openclash restart
 
-#更新openclash订阅
-/usr/share/openclash/openclash.sh
+
 
 log "脚本执行结束。"
