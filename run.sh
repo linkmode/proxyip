@@ -52,7 +52,7 @@ log "GitHub 项目路径已找到：$github_repo_path"
 # 运行 CloudflareST 工具
 echo "正在运行 CloudflareST..."
 log "正在运行 CloudflareST..."
-"$cloudflarest_path" -o "$output_file" -sl 5 -dn 10 -tll 40 -tl 230 -tlr 0.2 -cfcolo ATL,LAX,ORD,JFK,SFO,MIA,DFW,SEA,EWR,PHX
+"$cloudflarest_path" -o "$output_file" -sl 5 -dn 10 -tll 40 -tl 230 -tlr 0.2 -cfcolo ATL,LAX,ORD,DFW,DEN,JFK,SFO,MIA,SEA,MCO,PHX,IAH,LAS,BOS,EWR,CLT,PDX,MSP,BWI,SLC
 #"$cloudflarest_path" -o "$output_file" -dn 10 -tll 40 -tl 230 -tlr 0.2
 
 # 检查是否成功生成 result.txt
