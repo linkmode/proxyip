@@ -52,7 +52,7 @@ log "GitHub 项目路径已找到：$github_repo_path"
 # 运行 CloudflareST 工具
 echo "正在运行 CloudflareST..."
 log "正在运行 CloudflareST..."
-"$cloudflarest_path" -o "$output_file"-httping -httping-code 200 -t 4 -sl 5 -dn 5 -tll 40 -tl 200 -tlr 0.0
+"$cloudflarest_path" -o "$output_file" -t 10 -sl 5 -dn 5 -tll 40 -tl 200 -tlr 0.0
 
 # 检查是否成功生成 result.txt
 if [ ! -f "$output_file" ]; then
@@ -65,7 +65,8 @@ log "CloudflareST 运行完成，结果已保存到 $output_file。"
 # 提取 IP 地址并保存到 result_upload.txt
 echo "正在提取 IP 地址..."
 log "正在提取 IP 地址..."
-awk -F ',' 'NR > 1 {print $1 "#" "Best " NR-1}' "$output_file" > "$upload_file"
+#awk -F ',' 'NR > 1 {print $1 "#" "Best " NR-1}' "$output_file" > "$upload_file"
+awk -F ',' 'NR > 1 {print $1}' "$output_file" > "$upload_file"
 
 # 检查是否成功生成 result_upload.txt
 if [ -f "$upload_file" ]; then
