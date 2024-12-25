@@ -7,7 +7,7 @@ SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 cd "$SCRIPT_DIR" || { echo "无法进入脚本所在目录"; exit 1; }
 
 # 下载 CloudflareST 工具的压缩包到当前目录
-wget -N wget -N https://ghp.ci/https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.2.5/CloudflareST_linux_amd64.tar.gz
+wget -N https://github.com/XIU2/CloudflareSpeedTest/releases/download/v2.2.5/CloudflareST_linux_amd64.tar.gz
 
 # 解压缩 tar.gz 文件到当前目录
 tar -zxf CloudflareST_linux_amd64.tar.gz
